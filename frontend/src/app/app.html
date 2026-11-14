@@ -4,15 +4,27 @@
     <h1>Welcome, {{ loggedInUser() }}! 🎉</h1>
     <p class="welcome-text">Please fill in your details.</p>
 
-    <input #firstName placeholder="First name">
+    <input #firstName placeholder="First name" [class.invalid]="firstNameError()" (input)="message.set(''); firstNameError.set('')">
+    @if (firstNameError()) {
+      <p class="field-error">{{ firstNameError() }}</p>
+    }
 
-    <input #lastName placeholder="Last name">
+    <input #lastName placeholder="Last name" [class.invalid]="lastNameError()" (input)="message.set(''); lastNameError.set('')">
+    @if (lastNameError()) {
+      <p class="field-error">{{ lastNameError() }}</p>
+    }
 
-    <input #address placeholder="Address">
+    <input #address placeholder="Address" [class.invalid]="addressError()" (input)="message.set(''); addressError.set('')">
+    @if (addressError()) {
+      <p class="field-error">{{ addressError() }}</p>
+    }
 
-    <input #phone type="tel" inputmode="numeric" maxlength="12" placeholder="Phone #" (input)="formatPhone(phone)">
+    <input #phone type="tel" inputmode="numeric" maxlength="12" placeholder="Phone #" [class.invalid]="phoneError()" (input)="formatPhone(phone); message.set(''); phoneError.set('')">
+    @if (phoneError()) {
+      <p class="field-error">{{ phoneError() }}</p>
+    }
 
-    <button (click)="saveDetails(firstName.value, lastName.value, address.value, phone.value)">Save</button>
+    <button (click)="saveDetails(firstName.value, lastName.value, address.value, phone.value, [firstName, lastName, address, phone])">Save</button>
 
     <p class="message" [class.success]="message().includes('successful')">{{ message() }}</p>
 
@@ -30,12 +42,18 @@
     <h1>Sign up</h1>
   }
 
-  <input #username placeholder="Username" (input)="message.set('')">
+  <input #username placeholder="Username" autofocus [class.invalid]="usernameError()" (input)="message.set(''); usernameError.set('')">
+  @if (usernameError()) {
+    <p class="field-error">{{ usernameError() }}</p>
+  }
 
-  <input #password type="password" placeholder="Password" (input)="message.set('')">
+  <input #password type="password" placeholder="Password" [class.invalid]="passwordError()" (input)="message.set(''); passwordError.set('')">
+  @if (passwordError()) {
+    <p class="field-error">{{ passwordError() }}</p>
+  }
 
   @if (mode() === 'login') {
-    <button (click)="login(username.value, password.value)">Login</button>
+    <button (click)="login(username.value, password.value); username.focus()">Login</button>
     <p class="switch">New here? <a (click)="switchMode('signup')">Create an account</a></p>
   } @else {
     <button (click)="signup(username.value, password.value)">Sign up</button>
