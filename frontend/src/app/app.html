@@ -1,3 +1,23 @@
+@if (mode() === 'welcome') {
+
+  <div class="login-box">
+    <h1>Welcome, {{ loggedInUser() }}! 🎉</h1>
+    <p class="welcome-text">Please fill in your details.</p>
+
+    <input placeholder="First name">
+
+    <input placeholder="Last name">
+
+    <input placeholder="Address">
+
+    <input #phone type="tel" inputmode="numeric" placeholder="Phone number" (input)="onlyNumbers(phone)">
+
+    <button (click)="logout()">Log out</button>
+  </div>
+
+} @else {
+
+
 <div class="login-box">
 
   @if (mode() === 'login') {
@@ -21,3 +41,5 @@
   <p class="message" [class.success]="message().includes('successful')">{{ message() }}</p>
 
 </div>
+
+}
