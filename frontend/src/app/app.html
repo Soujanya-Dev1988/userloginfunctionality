@@ -4,13 +4,17 @@
     <h1>Welcome, {{ loggedInUser() }}! 🎉</h1>
     <p class="welcome-text">Please fill in your details.</p>
 
-    <input placeholder="First name">
+    <input #firstName placeholder="First name">
 
-    <input placeholder="Last name">
+    <input #lastName placeholder="Last name">
 
-    <input placeholder="Address">
+    <input #address placeholder="Address">
 
     <input #phone type="tel" inputmode="numeric" placeholder="Phone number" (input)="onlyNumbers(phone)">
+
+    <button (click)="saveDetails(firstName.value, lastName.value, address.value, phone.value)">Save</button>
+
+    <p class="message" [class.success]="message().includes('successful')">{{ message() }}</p>
 
     <button (click)="logout()">Log out</button>
   </div>

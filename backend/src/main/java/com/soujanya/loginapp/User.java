@@ -18,7 +18,15 @@ public class User {
 
     private String password;
 
-        public User() {
+    private String firstName;
+
+    private String lastName;
+
+    private String address;
+
+    private String phone;
+
+    public User() {
     }
 
     public User(String username, String password) {
@@ -32,5 +40,12 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void updateDetails(String firstName, String lastName, String address, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
     }
 }

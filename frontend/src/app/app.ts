@@ -46,4 +46,17 @@ export class App {
   onlyNumbers(box: HTMLInputElement) {
     box.value = box.value.replace(/[^0-9]/g, '');
   }
+  saveDetails(firstName: string, lastName: string, address: string, phone: string) {
+    this.http.post(
+      'http://localhost:8080/api/details',
+      {
+        username: this.loggedInUser(),
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        phone: phone
+      },
+      { responseType: 'text' }
+    ).subscribe(answer => this.message.set(answer));
+  }
 }

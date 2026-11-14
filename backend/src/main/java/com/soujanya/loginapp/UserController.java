@@ -50,4 +50,21 @@ public class UserController {
         userRepository.save(newUser);
         return "Sign up successful";
     }
+    @PostMapping("/api/details")
+    public String saveDetails(@RequestBody DetailsRequest request) {
+        User user = userRepository.findByUsername(request.username());
+
+        if (user == null) {
+            return "User not found";
+        }
+
+        if (!request.phone().matches("[0-9]+")) {
+            return "Phone number must contain only numbers";
+        }
+
+        user.updateDetails(request.firstName(), request.lastName(), request.address(), request.phone());
+        userRepository.save(user);
+
+        return "Details saved successfully";
+    }
 }
