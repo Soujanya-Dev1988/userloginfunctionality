@@ -1,0 +1,23 @@
+<div class="login-box">
+
+  @if (mode() === 'login') {
+    <h1>Login</h1>
+  } @else {
+    <h1>Sign up</h1>
+  }
+
+  <input #username placeholder="Username" (input)="message.set('')">
+
+  <input #password type="password" placeholder="Password" (input)="message.set('')">
+
+  @if (mode() === 'login') {
+    <button (click)="login(username.value, password.value)">Login</button>
+    <p class="switch">New here? <a (click)="switchMode('signup')">Create an account</a></p>
+  } @else {
+    <button (click)="signup(username.value, password.value)">Sign up</button>
+    <p class="switch">Already have an account? <a (click)="switchMode('login')">Log in</a></p>
+  }
+
+  <p class="message" [class.success]="message().includes('successful')">{{ message() }}</p>
+
+</div>
