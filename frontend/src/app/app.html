@@ -10,7 +10,7 @@
 
     <input #address placeholder="Address">
 
-    <input #phone type="tel" inputmode="numeric" placeholder="Phone number" (input)="onlyNumbers(phone)">
+    <input #phone type="tel" inputmode="numeric" maxlength="12" placeholder="Phone #" (input)="formatPhone(phone)">
 
     <button (click)="saveDetails(firstName.value, lastName.value, address.value, phone.value)">Save</button>
 

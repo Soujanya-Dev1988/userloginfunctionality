@@ -58,8 +58,8 @@ public class UserController {
             return "User not found";
         }
 
-        if (!request.phone().matches("[0-9]+")) {
-            return "Phone number must contain only numbers";
+        if (!request.phone().matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
+            return "Phone number must look like 309-776-6751";
         }
 
         user.updateDetails(request.firstName(), request.lastName(), request.address(), request.phone());

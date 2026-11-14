@@ -43,8 +43,17 @@ export class App {
     this.switchMode('login');
   }
 
-  onlyNumbers(box: HTMLInputElement) {
-    box.value = box.value.replace(/[^0-9]/g, '');
+formatPhone(box: HTMLInputElement) {
+    let digits = box.value.replace(/[^0-9]/g, '');
+    digits = digits.substring(0, 10);
+
+    if (digits.length > 6) {
+      box.value = digits.substring(0, 3) + '-' + digits.substring(3, 6) + '-' + digits.substring(6);
+    } else if (digits.length > 3) {
+      box.value = digits.substring(0, 3) + '-' + digits.substring(3);
+    } else {
+      box.value = digits;
+    }
   }
   saveDetails(firstName: string, lastName: string, address: string, phone: string) {
     this.http.post(
