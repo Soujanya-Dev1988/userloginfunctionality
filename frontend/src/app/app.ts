@@ -91,19 +91,19 @@ export class App {
     this.phoneError.set('');
 
     if (firstName.trim() === '') {
-      this.firstNameError.set('Please enter your first name');
+      this.firstNameError.set('Please enter your First name');
     }
 
     if (lastName.trim() === '') {
-      this.lastNameError.set('Please enter your last name');
+      this.lastNameError.set('Please enter your Last name');
     }
 
     if (address.trim() === '') {
-      this.addressError.set('Please enter your address');
+      this.addressError.set('Please enter your Address');
     }
 
     if (phone.trim() === '') {
-      this.phoneError.set('Please enter your phone number');
+      this.phoneError.set('Please enter your Phone #');
     } else if (!/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phone)) {
       this.phoneError.set('Phone number must look like xxx-xxx-xxxx');
     }
